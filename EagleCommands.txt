@@ -1,0 +1,46 @@
+GRID 1 MM;
+
+MARK (150 -100);
+
+MOVE LED-HOUR-1 (R 0 0);	MOVE LED-HOUR-1	(P 220 		117);
+MOVE LED-HOUR-2 (R 0 0);	MOVE LED-HOUR-2	(P 220 		87);
+
+MOVE LED1  		(R 0 0);    MOVE LED1      	(P 200 		117); 		ROTATE =R207 	LED1;
+MOVE LED2  		(R 0 0);    MOVE LED2      	(P 200 		111); 		ROTATE =R201 	LED2; 
+MOVE LED3  		(R 0 0);    MOVE LED3      	(P 200 		105); 		ROTATE =R195 	LED3; 
+MOVE LED4  		(R 0 0);    MOVE LED4      	(P 200 		99);  		ROTATE =R189 	LED4; 
+MOVE LED5  		(R 0 0);    MOVE LED5      	(P 200 		93);  		ROTATE =R183 	LED5; 
+MOVE LED6  		(R 0 0);    MOVE LED6      	(P 200 		87);  		ROTATE =R177 	LED6; 
+MOVE LED7  		(R 0 0);    MOVE LED7      	(P 200 		81);  		ROTATE =R171 	LED7; 
+MOVE LED8  		(R 0 0);    MOVE LED8      	(P 200 		75);  		ROTATE =R165 	LED8; 
+MOVE LED9  		(R 0 0);    MOVE LED9      	(P 200 		69);  		ROTATE =R159 	LED9; 
+MOVE LED10 		(R 0 0);    MOVE LED10     	(P 200 		63);  		ROTATE =R153 	LED10;
+	
+MOVE IC1 		(R 0 0);   	MOVE IC1  		(P 218 		107); 		ROTATE =MR-17 	IC1;
+MOVE C-1 		(R 0 0);   	MOVE C-1  		(P 218.5 	110.5); 	ROTATE =MR-107 	C-1;
+MOVE IC2 		(R 0 0);   	MOVE IC2  		(P 218 		97);  		ROTATE =MR-7 	IC2;
+MOVE C-2 		(R 0 0);   	MOVE C-2  		(P 218.5 	100.5); 	ROTATE =MR-97 	C-2;
+MOVE IC3 		(R 0 0);   	MOVE IC3  		(P 218 		77);  		ROTATE =MR13 	IC3;
+MOVE C-3 		(R 0 0);   	MOVE C-3  		(P 218.5 	80.5); 		ROTATE =MR-77 	C-3;
+MOVE IC4 		(R 0 0);   	MOVE IC4  		(P 218 		67);  		ROTATE =MR23 	IC4;
+MOVE C-4 		(R 0 0);   	MOVE C-4  		(P 218.5 	70.5); 		ROTATE =MR-67 	C-4;
+			
+MOVE IC-OR 		(R 0 0);  	MOVE IC-OR 		(P 185   	105); 		ROTATE =MR165 	IC-OR;
+MOVE C-OR  		(R 0 0);  	MOVE C-OR  		(P 185.5 	101); 		ROTATE =MR75  	C-OR;
+							
+MOVE IC-MIN 	(R 0 0);   	MOVE IC-MIN  	(P 185   	95);   		ROTATE =MR175 	IC-MIN;
+MOVE C-MIN  	(R 0 0);   	MOVE C-MIN   	(P 185.5 	91.3); 		ROTATE =MR85  	C-MIN;
+							
+MOVE IC-IN 		(R 0 0);   	MOVE IC-IN  	(P 185   	85); 		ROTATE =MR5  	IC-IN;
+MOVE C-IN  		(R 0 0);   	MOVE C-IN   	(P 185.5 	81); 		ROTATE =MR95 	C-IN;
+						
+MOVE SV1 		(R 0 0);   	MOVE SV1  		(P 185   	75); 		ROTATE =MR15  	SV1;
+
+GRID 1 mm;
+MARK (150 -100);
+
+SET WIRE_BEND 7;
+CHANGE WIDTH 16 mil;
+
+LINE 'LED1-CA' (P 200 117.3) @+0 (P 210 117.3) @-210 (P 210 108.7) @+0 (P 214 108.7);
+LINE 'LED1-AN' (P 200 116.6) @+0 (P 209 116.6) @-209 (P 209 108.0) @+0 (P 214 108.0);
