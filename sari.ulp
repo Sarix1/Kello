@@ -1,0 +1,310 @@
+int   g_error = 0;
+
+int   g_x = 0;
+int   g_y = 0;
+int   g_z = 0;
+real  g_rx = 0;
+real  g_ry = 0;
+real  g_rz = 0;
+real  g_dist = 0;
+real  g_angle = 0;
+
+real  arg_mark_x   = 0;
+real  arg_mark_y   = 0;
+real  arg_radius_a = 0;
+real  arg_radius_b = 0;
+real  arg_angle    = 0;
+
+string arg_signal = "";
+string arg_elem_a = "";
+string arg_elem_b = "";
+
+UL_ELEMENT EmptyElement;
+UL_CONTACT EmptyContact;
+
+
+real radToDeg(real radian)
+{
+  real degree = (radian * 180.0) / PI;
+  
+  return degree;
+}
+
+
+// returns an angle from +PI to -PI
+real atan2(real dy, real dx)
+{
+  real angle = (dx == 0) ? ((dy < 0) ? -PI/2 : PI/2) : atan(dy/dx);
+  
+  if (dx < 0.0)
+    angle += (dy < 0.0) ? -PI : PI;
+
+  return angle; //radians
+}
+
+
+real distance(real ax, real ay, real bx, real by)
+{
+  real dx = bx - ax;
+  real dy = by - ay;
+  real dist = sqrt(dx*dx + dy*dy);
+  
+  return dist;
+}
+
+
+string dtostr (real d)
+{
+   string str = "";
+   sprintf(str, "%.4f", d);
+   
+   return str;
+}
+
+
+string xy_str(int x, int y)
+{
+  string str = "";
+  str += dtostr(u2mm(x)) + " " + dtostr(u2mm(y));
+  
+  return str;
+}
+
+
+string xy_polar(real origin_x, real origin_y, real x, real y)
+{
+  string polar_str = "";
+
+  real dist   = distance(x, y, origin_x, origin_y);
+  real angle  = atan2(y-origin_y, x-origin_x);
+  
+  g_dist  = dist;
+  g_angle = angle; //radians
+  
+  polar_str = dtostr(dist) + " " + dtostr(radToDeg(angle));
+  
+  return polar_str;
+}
+
+
+UL_ELEMENT findElement(string name)
+{
+  board(B)
+  {
+    B.elements(E)
+    {
+      if (E.name == name)
+      {
+        g_error = 0;
+        return E;
+      }
+    }
+  }
+  
+  g_error = 1;
+  return EmptyElement;
+}
+
+
+UL_CONTACT findContact(UL_ELEMENT E, int id)
+{
+  int counter = 1;
+  
+  E.package.contacts(C)
+  { 
+    if (counter == id)
+    {
+      g_error = 0;
+      return C;
+    }
+
+    counter++;
+  }
+  
+  g_error = 1;
+  return EmptyContact;
+}
+
+
+UL_CONTACT findSignalContact(UL_ELEMENT E, string signal_name)
+{
+  E.package.contacts(C)
+  { 
+    if (C.signal == signal_name)
+    {
+      g_error = 0;
+      return C;
+    }
+  }
+  
+  g_error = 1;
+  return EmptyContact;
+}
+
+
+string getElementPos(UL_ELEMENT E)
+{
+  string str = xy_str(E.x, E.y);
+  
+  g_x = E.x;
+  g_y = E.y;
+  
+  return str;
+}
+
+
+string getContactPos(UL_CONTACT C)
+{
+  string str = xy_str(C.x, C.y);
+  
+  g_x = C.x;
+  g_y = C.y;
+  
+  return str;
+}
+
+
+string getPos(string element_name, int contact_id)
+{
+  UL_ELEMENT Element = findElement(element_name);
+  string pos_str = getElementPos(Element);
+  
+  if (contact_id > 0)
+  {
+    UL_CONTACT Contact = findContact(Element, contact_id);
+    pos_str = getContactPos(Contact);
+  }
+  
+  return pos_str;
+}
+
+
+string mark(real x, real y)
+{
+  return "MARK (" + dtostr(x) + " " + dtostr(y) + ");\n";
+}
+
+string lineStart(string signal_name)
+{
+  string str
+  = "GRID 1 MM;\n"
+  + "SET WIRE_BEND 2;\n"
+  + "SET SNAP_BENDED OFF;\n"
+  + "LINE" + " '" + signal_name  + "'";
+  
+  return str;
+}
+
+string linePoint(real x, real y)
+{
+  return " ("   + dtostr(x) + " " + dtostr(y) + ")";
+}
+
+string linePointPolar(real radius, real angle)
+{
+  return " (P " + dtostr(radius) + " " + dtostr(angle) + ")";
+}
+
+string lineEnd()
+{
+  return ";\n" + "GRID LAST;\n";
+}
+
+string lineArc(real radius)
+{
+  if (radius < 0)
+    return " @-" + dtostr(-radius);
+  else
+    return " @+" + dtostr(radius);
+}
+
+
+string cmdMark()
+{
+  string cmd_str = "";
+  string pos_str = "0 0";
+
+  if (argc > 2)
+  {
+    string element_name = argv[2];
+    int    contact_id   = 0;
+    
+    if (argc > 3)
+      contact_id = strtol(argv[3]);
+      
+    pos_str = getPos(element_name, contact_id);
+  }
+
+  cmd_str += "GRID 1 MM;\n";
+  cmd_str += "MARK (" + pos_str + ");\n";
+  cmd_str += "GRID LAST;\n";
+  
+  return cmd_str;
+}
+
+
+string lineArcAB(real ax, real ay,  // point A (absolute coordinates)
+                 real bx, real by,  // point B (absolute coordinates)
+                 real mark_x, real mark_y,  // center point of circle
+                 real radius)                   // radius of circle
+{
+  // convert absolute xy coordinates to polar coordinates
+  real a_dist  = distance (ax, ay, mark_x, mark_y);
+  real b_dist  = distance (bx, by, mark_x, mark_y);
+  real a_angle = atan2    (ay - mark_y, ax - mark_x);
+  real b_angle = atan2    (by - mark_y, bx - mark_x);
+  
+  // build line
+  return mark(arg_mark
+       + lineStart      (signal_name)
+       + linePoint      (ax, ay)
+       + linePointPolar (radius, a_angle)
+       + lineArc        (a_angle < b_angle ? radius : -radius)
+       + linePointPolar (radius, b_angle)
+       + linePoint      (bx, by)
+       + lineEnd        ();
+}
+
+
+string wireSignalAB(string elem_name_a, string elem_name b, string signal_name, real mark_x, real mark_y)
+{  
+  // find elements and contacts between given signal
+  UL_ELEMENT Element_A = findElement       (elem_name_a);            if (g_error) return "";
+  UL_ELEMENT Element_B = findElement       (elem_name_b);            if (g_error) return "";
+  UL_CONTACT Contact_A = findSignalContact (Element_A, signal_name); if (g_error) return "";
+  UL_CONTACT Contact_B = findSignalContact (Element_B, signal_name); if (g_error) return "";
+  
+  // obtain and convert coordinates to mm
+  real ax = u2mm(Contact_A.x);
+  real ay = u2mm(Contact_A.y);
+  real bx = u2mm(Contact_B.x);
+  real by = u2mm(Contact_B.y);
+  
+  cmd_str += lineArcAB(ax, ay, bx, by, mark_x, mark_y)
+
+  
+  return cmd_str;
+}
+
+
+void userInput()
+{
+  string in_cmd  = "";
+  string out_cmd = "";
+
+  if (argc > 1)
+  {
+    in_cmd = strupr(argv[1]);
+    
+    if (in_cmd == "MARK")
+      out_cmd = cmdMark();
+      
+    else if (in_cmd == "WIRE")
+      out_cmd = cmdWire();
+  }
+  
+  exit(out_cmd);
+}
+
+
+userInput();
