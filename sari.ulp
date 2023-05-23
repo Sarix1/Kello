@@ -1,3 +1,17 @@
+/*
+[0] = sari.ulp
+[1] = WIRE
+[2] = ARC_BEND
+[3] = SIGNAL
+[4] = ELEM_A
+[5] = ELEM_B
+[6] = MARK_X
+[7] = MARK_Y
+[8] = RADIUS_A
+[9] = RADIUS_B
+[10] = BEND_ANGLE
+*/
+
 int   g_error = 0;
 
 int   g_x = 0;
@@ -243,10 +257,40 @@ string cmdMark()
 }
 
 
-string lineArcAB(real ax, real ay,  // point A (absolute coordinates)
-                 real bx, real by,  // point B (absolute coordinates)
-                 real mark_x, real mark_y,  // center point of circle
-                 real radius)                   // radius of circle
+string wireArc(string signal_name,
+               real ax, real ay,          // point A (absolute coordinates)
+               real bx, real by,          // point B (absolute coordinates)
+               real mark_x, real mark_y,  // center point of circle
+               real radius)               // radius of arc
+{    
+  // convert absolute xy coordinates to polar coordinates
+  real a_dist  = distance (ax, ay, mark_x, mark_y);
+  real b_dist  = distance (bx, by, mark_x, mark_y);
+  real a_angle = atan2    (ay - mark_y, ax - mark_x);
+  real b_angle = atan2    (by - mark_y, bx - mark_x);
+  
+  // build line command
+  string cmd = ""
+    + mark           (mark_x, mark_y)
+    + lineStart      (signal_name)
+    + linePoint      (ax, ay)
+    + linePointPolar (radius, a_angle)
+    + lineArc        (a_angle < b_angle ? radius : -radius)
+    + linePointPolar (radius, b_angle)
+    + linePoint      (bx, by)
+    + lineEnd        ();
+             
+  return cmd;
+
+}
+
+
+string wireArcBend(string signal_name,
+                   real ax, real ay,              // point A (absolute coordinates)
+                   real bx, real by,              // point B (absolute coordinates)
+                   real mark_x,   real mark_y,    // center point of circle
+                   real radius_a, real radius_b,  // radii of arcs A and B
+                   real bend_angle)               // angle between arc A and B
 {
   // convert absolute xy coordinates to polar coordinates
   real a_dist  = distance (ax, ay, mark_x, mark_y);
@@ -255,35 +299,56 @@ string lineArcAB(real ax, real ay,  // point A (absolute coordinates)
   real b_angle = atan2    (by - mark_y, bx - mark_x);
   
   // build line
-  return mark(arg_mark
-       + lineStart      (signal_name)
-       + linePoint      (ax, ay)
-       + linePointPolar (radius, a_angle)
-       + lineArc        (a_angle < b_angle ? radius : -radius)
-       + linePointPolar (radius, b_angle)
-       + linePoint      (bx, by)
-       + lineEnd        ();
+  string cmd = ""
+    + mark           (mark_x, mark_y)
+    + lineStart      (signal_name)
+    + linePoint      (ax, ay)
+    + linePointPolar (radius_a, a_angle)
+    + lineArc        (a_angle < bend_angle ? radius_a : -radius_a)
+    + linePointPolar (radius_a, bend_angle)
+    + linePointPolar (radius_b, bend_angle)
+    + lineArc        (b_angle > bend_angle ? radius_b : -radius_b)
+    + linePointPolar (radius_b, b_angle)
+    + linePoint      (bx, by)
+    + lineEnd        ();
+             
+  return cmd;
 }
 
 
-string wireSignalAB(string elem_name_a, string elem_name b, string signal_name, real mark_x, real mark_y)
-{  
-  // find elements and contacts between given signal
-  UL_ELEMENT Element_A = findElement       (elem_name_a);            if (g_error) return "";
-  UL_ELEMENT Element_B = findElement       (elem_name_b);            if (g_error) return "";
-  UL_CONTACT Contact_A = findSignalContact (Element_A, signal_name); if (g_error) return "";
-  UL_CONTACT Contact_B = findSignalContact (Element_B, signal_name); if (g_error) return "";
+string cmdWire()
+{
+  if (argc < 11)
+    return "";
+
+  string type        = strupr(argv[2]);
+  string signal_name = strupr(argv[3]);
+  string elem_name_a = strupr(argv[4]);
+  string elem_name_b = strupr(argv[5]);
+  real   mark_x      = strtol(argv[6]);
+  real   mark_y      = strtol(argv[7]);
+  real   radius_a    = strtol(argv[8]);
+  real   radius_b    = strtol(argv[9]);
+  real   bend_angle  = strtol(argv[10]);
   
-  // obtain and convert coordinates to mm
+  UL_ELEMENT Element_A = findElement(elem_name_a);  if (g_error) return "";
+  UL_ELEMENT Element_B = findElement(elem_name_b);  if (g_error) return "";
+  
+  UL_CONTACT Contact_A = findSignalContact (Element_A, signal_name);  if (g_error) return "";
+  UL_CONTACT Contact_B = findSignalContact (Element_B, signal_name);  if (g_error) return "";
+  
   real ax = u2mm(Contact_A.x);
   real ay = u2mm(Contact_A.y);
   real bx = u2mm(Contact_B.x);
   real by = u2mm(Contact_B.y);
-  
-  cmd_str += lineArcAB(ax, ay, bx, by, mark_x, mark_y)
+ 
+  if (type == "ARC")
+    return wireArc    (signal_name, ax, ay, bx, by, mark_x, mark_y, radius_a);
+    
+  else if (type == "ARC_BEND")
+    return wireArcBend(signal_name, ax, ay, bx, by, mark_x, mark_y, radius_a, radius_b, bend_angle);
 
-  
-  return cmd_str;
+  return "";
 }
 
 
