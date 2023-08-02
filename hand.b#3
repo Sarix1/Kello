@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="1" unitdist="mm" unit="mm" style="lines" multiple="1" display="no" altdistance="5" altunitdist="mil" altunit="mil"/>
+<grid distance="50" unitdist="mil" unit="mil" style="lines" multiple="1" display="no" altdistance="5" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
@@ -1973,7 +1973,7 @@ design rules under a new name.</description>
 <signal name="N$8">
 <contactref element="IC-MIN" pad="3"/>
 <contactref element="IC1" pad="10"/>
-<wire x1="79.0765" y1="110.261396875" x2="129.748625" y2="87.75945625" width="0" layer="19" extent="1-1"/>
+<wire x1="129.748625" y1="87.75945625" x2="79.0765" y2="110.261396875" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="VDD">
 <contactref element="C-1" pad="1"/>
@@ -2056,7 +2056,7 @@ design rules under a new name.</description>
 <signal name="N$63">
 <contactref element="IC-MIN" pad="2"/>
 <contactref element="IC1" pad="14"/>
-<wire x1="88.79255625" y1="113.23189375" x2="127.218290625" y2="87.53808125" width="0" layer="19" extent="1-1"/>
+<wire x1="127.218290625" y1="87.53808125" x2="88.79255625" y2="113.23189375" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$64">
 <contactref element="IC-MIN" pad="15"/>
@@ -2106,7 +2106,7 @@ design rules under a new name.</description>
 <signal name="MIN-C">
 <contactref element="IC-OR" pad="1"/>
 <contactref element="SV1" pad="5"/>
-<wire x1="197.552821875" y1="77.46955" x2="93.772025" y2="80.404253125" width="0" layer="19" extent="1-1"/>
+<wire x1="93.772025" y1="80.404253125" x2="197.552821875" y2="77.46955" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="MIN-D">
 <contactref element="IC-OR" pad="5"/>
@@ -2192,45 +2192,61 @@ design rules under a new name.</description>
 <contactref element="IC1" pad="13"/>
 <contactref element="LED3" pad="A"/>
 <contactref element="IC1" pad="2"/>
+<wire x1="93.4494" y1="106.6875" x2="95.107753125" y2="100.626121875" width="0.508" layer="1"/>
+<wire x1="95.107753125" y1="100.626121875" x2="97.4424125" y2="101.250340625" width="0.508" layer="1" curve="-0.6657"/>
+<wire x1="97.4424125" y1="101.250340625" x2="99.4629" y2="93.5139" width="0.508" layer="1"/>
 <wire x1="93.449440625" y1="106.687475" x2="86.363540625" y2="112.48926875" width="0" layer="19" extent="1-1"/>
-<wire x1="99.462915625" y1="93.513865625" x2="93.449440625" y2="106.687475" width="0" layer="19" extent="1-1"/>
+<wire x1="93.4494" y1="106.6875" x2="93.449440625" y2="106.687475" width="0" layer="19" extent="1-1"/>
+<wire x1="99.462915625" y1="93.513865625" x2="99.4629" y2="93.5139" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED3-CA">
 <contactref element="LED3" pad="K"/>
 <contactref element="IC1" pad="3"/>
-<wire x1="97.0094625" y1="92.8564625" x2="91.020428125" y2="105.94485" width="0" layer="19" extent="1-1"/>
+<wire x1="91.0204" y1="105.9449" x2="93.009403125" y2="99.00018125" width="0.508" layer="1"/>
+<wire x1="93.009403125" y1="99.00018125" x2="95.155984375" y2="99.602440625" width="0.508" layer="1" curve="-0.6171"/>
+<wire x1="95.155984375" y1="99.602440625" x2="97.0095" y2="92.8565" width="0.508" layer="1"/>
+<wire x1="91.0204" y1="105.9449" x2="91.020428125" y2="105.94485" width="0" layer="19" extent="1-1"/>
+<wire x1="97.0094625" y1="92.8564625" x2="97.0095" y2="92.8565" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED2-CA">
 <contactref element="LED2" pad="K"/>
 <contactref element="IC1" pad="5"/>
-<wire x1="86.1624" y1="104.459603125" x2="77.140759375" y2="86.26095625" width="0" layer="19" extent="1-1"/>
+<wire x1="86.1624" y1="104.4596" x2="88.0084375" y2="98.547340625" width="0.508" layer="1"/>
+<wire x1="88.0084375" y1="98.547340625" x2="74.228" y2="93.707521875" width="0.508" layer="1" curve="4.0241"/>
+<wire x1="74.228" y1="93.707521875" x2="77.1408" y2="86.261" width="0.508" layer="1"/>
+<wire x1="86.1624" y1="104.4596" x2="86.1624" y2="104.459603125" width="0" layer="19" extent="1-1"/>
+<wire x1="77.140759375" y1="86.26095625" x2="77.1408" y2="86.261" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED1-AN">
 <contactref element="IC1" pad="9"/>
 <contactref element="LED1" pad="A"/>
 <contactref element="IC1" pad="6"/>
-<wire x1="60.44818125" y1="78.830846875" x2="56.41835" y2="86.878234375" width="0.4064" layer="1"/>
-<wire x1="56.41835" y1="86.878234375" x2="85.415446875" y2="98.7708125" width="0.4064" layer="1" curve="-8.6"/>
-<wire x1="85.415446875" y1="98.7708125" x2="83.8703625" y2="103.52609375" width="0.4064" layer="1"/>
+<wire x1="83.7334" y1="103.717" x2="85.349190625" y2="98.749271875" width="0.508" layer="1"/>
+<wire x1="85.349190625" y1="98.749271875" x2="56.300296875" y2="86.819071875" width="0.508" layer="1" curve="8.617101"/>
+<wire x1="56.300296875" y1="86.819071875" x2="60.3335" y2="78.7779" width="0.508" layer="1"/>
 <wire x1="83.733384375" y1="103.716978125" x2="76.647484375" y2="109.518771875" width="0" layer="19" extent="1-1"/>
-<wire x1="83.8703625" y1="103.52609375" x2="83.733384375" y2="103.716978125" width="0" layer="19" extent="1-1"/>
-<wire x1="60.333478125" y1="78.777871875" x2="60.44818125" y2="78.830846875" width="0" layer="19" extent="1-1"/>
+<wire x1="83.7334" y1="103.717" x2="83.733384375" y2="103.716978125" width="0" layer="19" extent="1-1"/>
+<wire x1="60.333478125" y1="78.777871875" x2="60.3335" y2="78.7779" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED2-AN">
 <contactref element="IC1" pad="11"/>
 <contactref element="LED2" pad="A"/>
 <contactref element="IC1" pad="4"/>
-<wire x1="88.5914125" y1="105.202228125" x2="81.5055125" y2="111.004021875" width="0" layer="19" extent="1-1"/>
-<wire x1="79.51205625" y1="87.171209375" x2="88.5914125" y2="105.202228125" width="0" layer="19" extent="1-1"/>
+<wire x1="88.5914" y1="105.2022" x2="90.653765625" y2="98.310425" width="0.508" layer="1"/>
+<wire x1="90.653765625" y1="98.310425" x2="77.046371875" y2="93.71826875" width="0.508" layer="1" curve="3.9759"/>
+<wire x1="77.046371875" y1="93.71826875" x2="79.5121" y2="87.1712" width="0.508" layer="1"/>
+<wire x1="81.5055125" y1="111.004021875" x2="88.5914125" y2="105.202228125" width="0" layer="19" extent="1-1"/>
+<wire x1="88.5914" y1="105.2022" x2="88.5914125" y2="105.202228125" width="0" layer="19" extent="1-1"/>
+<wire x1="79.51205625" y1="87.171209375" x2="79.5121" y2="87.1712" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED1-CA">
 <contactref element="LED1" pad="K"/>
 <contactref element="IC1" pad="7"/>
-<wire x1="58.270090625" y1="77.723446875" x2="53.68359375" y2="86.60961875" width="0.4064" layer="1"/>
-<wire x1="53.68359375" y1="86.60961875" x2="82.671271875" y2="98.914159375" width="0.4064" layer="1" curve="-8.6"/>
-<wire x1="82.671271875" y1="98.914159375" x2="81.38881875" y2="102.703" width="0.4064" layer="1"/>
-<wire x1="81.38881875" y1="102.703" x2="81.304371875" y2="102.974353125" width="0" layer="19" extent="1-1"/>
-<wire x1="58.07031875" y1="77.6247375" x2="58.270090625" y2="77.723446875" width="0" layer="19" extent="1-1"/>
+<wire x1="81.3044" y1="102.9744" x2="82.67786875" y2="98.916390625" width="0.508" layer="1"/>
+<wire x1="82.67786875" y1="98.916390625" x2="53.475859375" y2="86.502253125" width="0.508" layer="1" curve="8.6657"/>
+<wire x1="53.475859375" y1="86.502253125" x2="58.0703" y2="77.6247" width="0.508" layer="1"/>
+<wire x1="81.3044" y1="102.9744" x2="81.304371875" y2="102.974353125" width="0" layer="19" extent="1-1"/>
+<wire x1="58.07031875" y1="77.6247375" x2="58.0703" y2="77.6247" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$4">
 <contactref element="IC-MIN" pad="7"/>
@@ -2241,85 +2257,141 @@ design rules under a new name.</description>
 <contactref element="LED6" pad="A"/>
 <contactref element="IC2" pad="13"/>
 <contactref element="IC2" pad="2"/>
+<wire x1="130.1995" y1="113.3673" x2="130.59524375" y2="109.10154375" width="0.508" layer="1"/>
+<wire x1="130.59524375" y1="109.10154375" x2="162.321890625" y2="109.638190625" width="0.508" layer="1" curve="-8.6657"/>
+<wire x1="162.321890625" y1="109.638190625" x2="161.7355" y2="99.6594" width="0.508" layer="1"/>
 <wire x1="130.199475" y1="113.36733125" x2="124.228696875" y2="120.311434375" width="0" layer="19" extent="1-1"/>
-<wire x1="161.73545" y1="99.6594375" x2="130.199475" y2="113.36733125" width="0" layer="19" extent="1-1"/>
+<wire x1="130.1995" y1="113.3673" x2="130.199475" y2="113.36733125" width="0" layer="19" extent="1-1"/>
+<wire x1="161.73545" y1="99.6594375" x2="161.7355" y2="99.6594" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED6-CA">
 <contactref element="LED6" pad="K"/>
 <contactref element="IC2" pad="3"/>
-<wire x1="159.198928125" y1="99.792371875" x2="127.678409375" y2="113.05778125" width="0" layer="19" extent="1-1"/>
+<wire x1="127.6784" y1="113.0578" x2="128.22284375" y2="107.862346875" width="0.508" layer="1"/>
+<wire x1="128.22284375" y1="107.862346875" x2="159.612775" y2="108.77881875" width="0.508" layer="1" curve="-8.6171"/>
+<wire x1="159.612775" y1="108.77881875" x2="159.1989" y2="99.7924" width="0.508" layer="1"/>
+<wire x1="127.6784" y1="113.0578" x2="127.678409375" y2="113.05778125" width="0" layer="19" extent="1-1"/>
+<wire x1="159.198928125" y1="99.792371875" x2="159.1989" y2="99.7924" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED5-CA">
 <contactref element="LED5" pad="K"/>
 <contactref element="IC2" pad="5"/>
-<wire x1="122.636275" y1="112.4386875" x2="138.264546875" y2="99.6594375" width="0" layer="19" extent="1-1"/>
+<wire x1="122.6363" y1="112.4387" x2="123.555365625" y2="105.303875" width="0.508" layer="1"/>
+<wire x1="123.555365625" y1="105.303875" x2="137.8541375" y2="106.643359375" width="0.508" layer="1" curve="-3.9759"/>
+<wire x1="137.8541375" y1="106.643359375" x2="138.2645" y2="99.6594" width="0.508" layer="1"/>
+<wire x1="138.2645" y1="99.6594" x2="138.264546875" y2="99.6594375" width="0" layer="19" extent="1-1"/>
+<wire x1="122.636275" y1="112.4386875" x2="122.6363" y2="112.4387" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED4-AN">
 <contactref element="LED4" pad="A"/>
 <contactref element="IC2" pad="9"/>
 <contactref element="IC2" pad="6"/>
+<wire x1="120.1152" y1="112.1291" x2="121.1228375" y2="104.975875" width="0.508" layer="1"/>
+<wire x1="121.1228375" y1="104.975875" x2="118.916875" y2="104.652971875" width="0.508" layer="1" curve="0.617101"/>
+<wire x1="118.916875" y1="104.652971875" x2="119.9675" y2="97.7363" width="0.508" layer="1"/>
+<wire x1="120.1152" y1="112.1291" x2="120.11520625" y2="112.1291375" width="0" layer="19" extent="1-1"/>
+<wire x1="119.96746875" y1="97.7363375" x2="119.9675" y2="97.7363" width="0" layer="19" extent="1-1"/>
 <wire x1="114.144428125" y1="119.07324375" x2="120.11520625" y2="112.1291375" width="0" layer="19" extent="1-1"/>
-<wire x1="119.96746875" y1="97.7363375" x2="120.11520625" y2="112.1291375" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED5-AN">
 <contactref element="LED5" pad="A"/>
 <contactref element="IC2" pad="11"/>
 <contactref element="IC2" pad="4"/>
-<wire x1="125.157340625" y1="112.748234375" x2="140.80106875" y2="99.792371875" width="0" layer="19" extent="1-1"/>
-<wire x1="119.1865625" y1="119.692340625" x2="125.157340625" y2="112.748234375" width="0" layer="19" extent="1-1"/>
+<wire x1="125.1573" y1="112.7482" x2="125.87563125" y2="106.596259375" width="0.508" layer="1"/>
+<wire x1="125.87563125" y1="106.596259375" x2="140.43321875" y2="107.779875" width="0.508" layer="1" curve="-4.0241"/>
+<wire x1="140.43321875" y1="107.779875" x2="140.8011" y2="99.7924" width="0.508" layer="1"/>
+<wire x1="140.8011" y1="99.7924" x2="140.80106875" y2="99.792371875" width="0" layer="19" extent="1-1"/>
+<wire x1="125.157340625" y1="112.748234375" x2="125.1573" y2="112.7482" width="0" layer="19" extent="1-1"/>
+<wire x1="119.1865625" y1="119.692340625" x2="125.1573" y2="112.7482" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED4-CA">
 <contactref element="LED4" pad="K"/>
 <contactref element="IC2" pad="7"/>
-<wire x1="117.458740625" y1="97.338996875" x2="117.594140625" y2="111.819590625" width="0" layer="19" extent="1-1"/>
+<wire x1="117.5941" y1="111.8196" x2="118.54456875" y2="105.607771875" width="0.508" layer="1"/>
+<wire x1="118.54456875" y1="105.607771875" x2="116.157859375" y2="105.22843125" width="0.508" layer="1" curve="0.6657"/>
+<wire x1="116.157859375" y1="105.22843125" x2="117.4587" y2="97.339" width="0.508" layer="1"/>
+<wire x1="117.5941" y1="111.8196" x2="117.594140625" y2="111.819590625" width="0" layer="19" extent="1-1"/>
+<wire x1="117.458740625" y1="97.338996875" x2="117.4587" y2="97.339" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED9-AN">
 <contactref element="LED9" pad="A"/>
 <contactref element="IC3" pad="13"/>
 <contactref element="IC3" pad="2"/>
+<wire x1="204.3695" y1="107.2719" x2="203.28243125" y2="103.12799375" width="0.508" layer="1"/>
+<wire x1="203.28243125" y1="103.12799375" x2="226.500578125" y2="95.57009375" width="0.508" layer="1" curve="-6.665701"/>
+<wire x1="226.500578125" y1="95.57009375" x2="222.8592" y2="86.261" width="0.508" layer="1"/>
 <wire x1="204.36951875" y1="107.271884375" x2="201.133846875" y2="115.839334375" width="0" layer="19" extent="1-1"/>
-<wire x1="222.8592375" y1="86.26095625" x2="204.36951875" y2="107.271884375" width="0" layer="19" extent="1-1"/>
+<wire x1="204.3695" y1="107.2719" x2="204.36951875" y2="107.271884375" width="0" layer="19" extent="1-1"/>
+<wire x1="222.8592375" y1="86.26095625" x2="222.8592" y2="86.261" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED9-CA">
 <contactref element="LED9" pad="K"/>
 <contactref element="IC3" pad="3"/>
-<wire x1="220.487940625" y1="87.171209375" x2="201.89461875" y2="107.843259375" width="0" layer="19" extent="1-1"/>
+<wire x1="201.8946" y1="107.8433" x2="200.629275" y2="102.774940625" width="0.508" layer="1"/>
+<wire x1="200.629275" y1="102.774940625" x2="223.65849375" y2="95.58994375" width="0.508" layer="1" curve="-6.6171"/>
+<wire x1="223.65849375" y1="95.58994375" x2="220.4879" y2="87.1712" width="0.508" layer="1"/>
+<wire x1="201.8946" y1="107.8433" x2="201.89461875" y2="107.843259375" width="0" layer="19" extent="1-1"/>
+<wire x1="220.487940625" y1="87.171209375" x2="220.4879" y2="87.1712" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED8-CA">
 <contactref element="LED8" pad="K"/>
 <contactref element="IC3" pad="5"/>
-<wire x1="200.53708125" y1="93.513865625" x2="196.94481875" y2="108.9860125" width="0" layer="19" extent="1-1"/>
+<wire x1="196.9448" y1="108.986" x2="195.368234375" y2="101.967134375" width="0.508" layer="1"/>
+<wire x1="195.368234375" y1="101.967134375" x2="202.304909375" y2="100.282790625" width="0.508" layer="1" curve="-1.9759"/>
+<wire x1="202.304909375" y1="100.282790625" x2="200.5371" y2="93.5139" width="0.508" layer="1"/>
+<wire x1="196.9448" y1="108.986" x2="196.94481875" y2="108.9860125" width="0" layer="19" extent="1-1"/>
+<wire x1="200.53708125" y1="93.513865625" x2="200.5371" y2="93.5139" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED7-AN">
 <contactref element="LED7" pad="A"/>
 <contactref element="IC3" pad="9"/>
 <contactref element="IC3" pad="6"/>
+<wire x1="194.4699" y1="109.5574" x2="192.970221875" y2="102.490890625" width="0.508" layer="1"/>
+<wire x1="192.970221875" y1="102.490890625" x2="183.679440625" y2="104.24175625" width="0.508" layer="1" curve="2.6171"/>
+<wire x1="183.679440625" y1="104.24175625" x2="182.5413" y2="97.339" width="0.508" layer="1"/>
 <wire x1="194.46991875" y1="109.5573875" x2="191.234246875" y2="118.1248375" width="0" layer="19" extent="1-1"/>
-<wire x1="182.54125625" y1="97.338996875" x2="194.46991875" y2="109.5573875" width="0" layer="19" extent="1-1"/>
+<wire x1="194.4699" y1="109.5574" x2="194.46991875" y2="109.5573875" width="0" layer="19" extent="1-1"/>
+<wire x1="182.54125625" y1="97.338996875" x2="182.5413" y2="97.339" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED8-AN">
 <contactref element="LED8" pad="A"/>
 <contactref element="IC3" pad="11"/>
 <contactref element="IC3" pad="4"/>
+<wire x1="199.4197" y1="108.4146" x2="197.990590625" y2="102.388003125" width="0.508" layer="1"/>
+<wire x1="197.990590625" y1="102.388003125" x2="205.1089625" y2="100.566703125" width="0.508" layer="1" curve="-2.0241"/>
+<wire x1="205.1089625" y1="100.566703125" x2="202.9905" y2="92.8565" width="0.508" layer="1"/>
 <wire x1="199.41971875" y1="108.414634375" x2="196.184046875" y2="116.9820875" width="0" layer="19" extent="1-1"/>
-<wire x1="202.990534375" y1="92.8564625" x2="199.41971875" y2="108.414634375" width="0" layer="19" extent="1-1"/>
+<wire x1="199.4197" y1="108.4146" x2="199.41971875" y2="108.414634375" width="0" layer="19" extent="1-1"/>
+<wire x1="202.990534375" y1="92.8564625" x2="202.9905" y2="92.8565" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED7-CA">
 <contactref element="LED7" pad="K"/>
 <contactref element="IC3" pad="7"/>
-<wire x1="180.032528125" y1="97.7363375" x2="191.99501875" y2="110.1287625" width="0" layer="19" extent="1-1"/>
+<wire x1="191.995" y1="110.1288" x2="190.7635625" y2="103.966496875" width="0.508" layer="1"/>
+<wire x1="190.7635625" y1="103.966496875" x2="181.233284375" y2="105.641634375" width="0.508" layer="1" curve="2.6657"/>
+<wire x1="181.233284375" y1="105.641634375" x2="180.0325" y2="97.7363" width="0.508" layer="1"/>
+<wire x1="191.995" y1="110.1288" x2="191.99501875" y2="110.1287625" width="0" layer="19" extent="1-1"/>
+<wire x1="180.032528125" y1="97.7363375" x2="180.0325" y2="97.7363" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED10-AN">
 <contactref element="LED10" pad="A"/>
 <contactref element="IC4" pad="13"/>
 <contactref element="IC4" pad="2"/>
+<wire x1="239.5359" y1="94.6818" x2="236.910084375" y2="88.972584375" width="0.508" layer="1"/>
+<wire x1="236.910084375" y1="88.972584375" x2="245.6048625" y2="84.726040625" width="0.508" layer="1" curve="-2.6657"/>
+<wire x1="245.6048625" y1="84.726040625" x2="241.9297" y2="77.6247" width="0.508" layer="1"/>
 <wire x1="239.535909375" y1="94.681790625" x2="237.837115625" y2="103.680953125" width="0" layer="19" extent="1-1"/>
-<wire x1="241.929678125" y1="77.6247375" x2="239.535909375" y2="94.681790625" width="0" layer="19" extent="1-1"/>
+<wire x1="239.5359" y1="94.6818" x2="239.535909375" y2="94.681790625" width="0" layer="19" extent="1-1"/>
+<wire x1="241.929678125" y1="77.6247375" x2="241.9297" y2="77.6247" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED10-CA">
 <contactref element="LED10" pad="K"/>
 <contactref element="IC4" pad="3"/>
-<wire x1="239.66651875" y1="78.777871875" x2="237.197828125" y2="95.67425" width="0" layer="19" extent="1-1"/>
+<wire x1="237.1978" y1="95.6743" x2="234.25751875" y2="89.07583125" width="0.508" layer="1"/>
+<wire x1="234.25751875" y1="89.07583125" x2="242.803053125" y2="85.03133125" width="0.508" layer="1" curve="-2.6171"/>
+<wire x1="242.803053125" y1="85.03133125" x2="239.6665" y2="78.7779" width="0.508" layer="1"/>
+<wire x1="237.1978" y1="95.6743" x2="237.197828125" y2="95.67425" width="0" layer="19" extent="1-1"/>
+<wire x1="239.66651875" y1="78.777871875" x2="239.6665" y2="78.7779" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>
